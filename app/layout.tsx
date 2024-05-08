@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -22,10 +22,14 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={clsx('h-full bg-gray-50 antialiased', inter.variable)}
+      suppressHydrationWarning
+      className={cn(
+        'min-h-screen bg-background font-sans antialiased',
+        inter.variable
+      )}
     >
-      <body className='flex h-full flex-col'>
-        <div className='flex min-h-full flex-col'>{children}</div>
+      <body className='flex min-h-full'>
+        <div className='w-full'>{children}</div>
       </body>
     </html>
   )
