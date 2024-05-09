@@ -11,7 +11,7 @@ export default function MainLayout({
     <>
       <NotificationBar />
       <Header />
-      <div className='relative flex w-full flex-col'>
+      <div className='relative flex w-full'>
         <main className='flex-auto'>{children}</main>
       </div>
       <Footer />

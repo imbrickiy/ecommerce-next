@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -7,9 +7,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu'
+} from "@/components/ui/navigation-menu";
 
-import Link from 'next/link'
+import Link from "next/link";
 
 const Navigation = ({
   className,
@@ -19,7 +19,7 @@ const Navigation = ({
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href='/' legacyBehavior passHref>
+          <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Home
             </NavigationMenuLink>
@@ -29,7 +29,7 @@ const Navigation = ({
           <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
           <NavigationMenuContent>
             <NavigationMenuLink>
-              <Link href='/' legacyBehavior passHref>
+              <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Item One
                 </NavigationMenuLink>
@@ -39,7 +39,7 @@ const Navigation = ({
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;

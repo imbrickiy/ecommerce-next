@@ -1,5 +1,3 @@
-
-
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -9,10 +7,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       <div className="relative flex w-full flex-col">
-
         <main className="flex-auto">{children}</main>
-
       </div>
     </>
-  )
+  );
 }
