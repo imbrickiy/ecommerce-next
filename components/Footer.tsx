@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#F6F6F6] px-16 py-14 font-sans tracking-wide">
+    <footer className="relative max-w-6xl px-16 py-14 font-sans tracking-wide mx-auto">
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col items-start lg:justify-center">
           <Link href="/" className="flex items-center">
