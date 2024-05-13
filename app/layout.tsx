@@ -12,6 +12,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Ecommerce Next JS",
   description: "Ecommerce project",
+  icons: {
+    icon: "/assets/logo.svg",
+  }
 };
 
 export default function RootLayout({
