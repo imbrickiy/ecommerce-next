@@ -21,7 +21,8 @@ export async function login(formData: FormData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/private");
+  
 }
 
 export async function signup(formData: FormData) {
@@ -32,8 +33,12 @@ export async function signup(formData: FormData) {
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
-    firstname: formData.get("firstname") as string,
-    lastname: formData.get("lastname") as string,
+    options: {
+      data: {
+        first_name: formData.get("first_name") as string,
+        last_name: formData.get("last_name") as string,
+      },
+    },
   };
 
   const { error } = await supabase.auth.signUp(data);
@@ -51,4 +56,14 @@ export async function signout() {
   const { error: signOutError } = await supabase.auth.signOut();
   revalidatePath("/", "layout");
   redirect("/");
+  
+}
+
+export async function getUser() {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.getUser();
+  if (error) {
+    redirect("/error");
+  }
+  return data
 }

@@ -38,10 +38,10 @@ const Header = () => {
         </Link>
 
         <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto md:mr-auto">
-          <Link href="#" className="mr-5 hover:text-gray-900">
+          <Link href="/" className="mr-5 hover:text-gray-900">
             Home
           </Link>
-          <Link href="#" className="mr-5 hover:text-gray-900">
+          <Link href="/categories" className="mr-5 hover:text-gray-900">
             Categories
           </Link>
           <Link href="#" className="mr-5 hover:text-gray-900">
