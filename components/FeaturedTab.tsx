@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ProductList from "./ProductList";
+import ProductList from "./Products";
 const FeaturedTab = () => {
   return (
     <Tabs defaultValue="featured" className="flex flex-col justify-center">

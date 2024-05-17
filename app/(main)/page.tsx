@@ -3,7 +3,7 @@ import FeaturedTab from "@/components/FeaturedTab";
 import Hero from "@/components/Hero";
 import Newsletter from "@/components/Newsletter";
 import Price from "@/components/Price";
-import ProductList from "@/components/ProductList";
+import Products from "@/components/Products";
 
 export default function Page() {
   return (
@@ -16,7 +16,7 @@ export default function Page() {
       <h1 className="text-center text-2xl font-bold not-italic leading-[normal] text-[#0E1422]">
         Best Selling
       </h1>
-      <ProductList />
+      <Products />
       <ActionSection />
       <FeaturedTab />
       {/* <ProductList /> */}

@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 
 interface IProductList {
@@ -44,7 +43,7 @@ const products = [
     link: "https://readymadeui.com/product/cotton-hoodie",
   },
 ];
-const ProductList = ({ reverse }: IProductList) => {
+const Products = ({ reverse }: IProductList) => {
   const list = reverse ? products.slice(1, 3) : products;
   return (
     <div className="mx-auto sm:max-w-full lg:max-w-7xl">
@@ -83,4 +82,4 @@ const ProductList = ({ reverse }: IProductList) => {
   );
 };
 
-export default ProductList;
+export default Products;

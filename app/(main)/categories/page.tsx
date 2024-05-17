@@ -1,12 +1,15 @@
-import SearchPanel from "./_components/SearchPanel";
+import SearchPanel from "./_components/FilterPanel";
+import { ProductList } from "./_components/ProductList";
 
 const Categories = () => {
   return (
-    <section className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-4 p-4">
-      <div className='hidden sm:block'>
+    <section className="m-4 mx-auto max-w-7xl p-4 flex">
+      <div className="hidden sm:block w-60">
         <SearchPanel />
       </div>
-      <div className="m-6 sm:w-full">RightMenu</div>
+      <div className="sm:w-full">
+        <ProductList />
+      </div>
     </section>
   );
 };

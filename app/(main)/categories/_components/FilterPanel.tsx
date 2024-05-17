@@ -1,7 +1,18 @@
 "use client";
-import { filters } from "./searchPanelData";
+import { IFilters } from "@/app/types/interfaces";
+import { filters } from "./filterPanelData";
 
 const SearchPanel = () => {
+  let activeFilters = [] as IFilters[];
+  const handleFilterSelect = (e: any) => {
+    const value = e.target.value;
+    if (e.target.checked) {
+      activeFilters.push(value);
+    } else {
+      activeFilters = activeFilters.filter((item) => item !== value);
+    }
+    console.log(activeFilters);
+  };
   return (
     <section className="rounded-xl  border border-[#E6E7E8] pl-4 pr-8 pt-5">
       <aside>
@@ -25,8 +36,8 @@ const SearchPanel = () => {
                             name={`${section.id}[]`}
                             defaultValue={option.value}
                             type="checkbox"
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            onClick={() => console.log(option)}
+                            className="h-4 w-4 rounded border-gray-300 text-indigo-600  transition duration-300 ease-in focus:ring-transparent "
+                            onChange={handleFilterSelect}
                           />
                           <label
                             htmlFor={`${section.id}-${optionIdx}`}
@@ -51,9 +62,11 @@ const SearchPanel = () => {
                           className={`${option.color} h-6 w-6 rounded-full `}
                         >
                           <input
-                            className="block h-6 w-6 cursor-pointer appearance-none rounded-full border-none bg-transparent transition duration-300 ease-in checked:border-none checked:bg-transparent checked:ring-offset-neutral-50 focus:bg-transparent focus:checked:bg-transparent"
+                            name={`${section.id}[]`}
+                            defaultValue={option.value}
+                            className="block h-6 w-6 cursor-pointer appearance-none rounded-full border-none bg-transparent transition duration-300 ease-in checked:border-none checked:bg-transparent checked:ring-offset-neutral-50 focus:bg-transparent focus:ring-transparent focus:checked:bg-transparent "
                             type="checkbox"
-                            onClick={() => console.log(option)}
+                            onChange={handleFilterSelect}
                           />
                         </div>
                       ))}
@@ -76,12 +89,12 @@ const SearchPanel = () => {
                             name={`${section.id}[]`}
                             defaultValue={option.value}
                             type="checkbox"
-                            className=" m-1 h-10 w-10 appearance-none items-center justify-center rounded border transition duration-300 ease-in target:bg-none checked:bg-gray-300 hover:bg-none focus:bg-transparent"
-                            onClick={() => console.log(option)}
+                            className=" m-1 h-10 w-10 appearance-none items-center justify-center rounded border text-gray-300 transition duration-300 ease-in target:bg-none checked:bg-gray-300 hover:bg-none focus:bg-transparent focus:outline focus:ring-transparent"
+                            onChange={handleFilterSelect}
                           />
                           <label
                             htmlFor={`${section.id}-${optionIdx}`}
-                            className="absolute text-sm text-gray-600"
+                            className="absolute text-sm font-bold text-gray-600"
                           >
                             {option.label}
                           </label>
