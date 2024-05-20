@@ -1,32 +1,41 @@
 "use client";
-import { IFilters } from "@/app/types/interfaces";
+import useFilterStore from "@/app/store/filter";
 import { filters } from "./filterPanelData";
 
-const SearchPanel = () => {
-  let activeFilters = [] as IFilters[];
+const FilterPanel = () => {
+  const deleteList = useFilterStore((state) => state.deleteList);
+  const filtersList = useFilterStore();
+  const addList = useFilterStore((state) => state.addList);
+  const featureFlag = useFilterStore((state) => state.flags[flag]);
+  const toggleFlag = useFilterStore((state) => state.toggleFlag);
+  const initFlags = useFilterStore((state) => state.initFlags);
+  initFlags(filters);
+
+  console.log(filtersList);
+
   const handleFilterSelect = (e: any) => {
-    const value = e.target.value;
-    if (e.target.checked) {
-      activeFilters.push(value);
+    const { name, checked, value } = e.target;
+    if (checked) {
+      addList({ name, value, checked });
     } else {
-      activeFilters = activeFilters.filter((item) => item !== value);
+      deleteList({ name, value, checked });
     }
-    console.log(activeFilters);
   };
+
   return (
     <section className="rounded-xl  border border-[#E6E7E8] pl-4 pr-8 pt-5">
       <aside>
         <div className="hidden sm:block">
           <form className="space-y-10">
             {filters.map((section, index) => (
-              <div key={section.name} className="flex flex-col gap-y-10">
+              <div key={index} className="flex flex-col gap-y-10">
                 {section.name === "Category" && (
                   <fieldset>
                     <legend className="block text-sm font-medium text-gray-900 ">
                       {section.name}
                     </legend>
                     <div className="space-y-3 pt-6">
-                      {section.options?.map((option, optionIdx) => (
+                      {section.options?.map((option, flag, optionIdx) => (
                         <div
                           key={option.value}
                           className="flex items-center border-b-2 p-3"
@@ -103,30 +112,6 @@ const SearchPanel = () => {
                     </div>
                   </fieldset>
                 )}
-                {/* <fieldset>
-                  <legend className="block text-sm font-medium text-gray-900">
-                    {section.name}
-                  </legend>
-                  <div className="space-y-3 pt-6">
-                    {section.options.map((option, optionIdx) => (
-                      <div key={option.value} className="flex items-center">
-                        <input
-                          id={`${section.id}-${optionIdx}`}
-                          name={`${section.id}[]`}
-                          defaultValue={option.value}
-                          type="checkbox"
-                          className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                        />
-                        <label
-                          htmlFor={`${section.id}-${optionIdx}`}
-                          className="ml-3 text-sm text-gray-600"
-                        >
-                          {option.label}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </fieldset> */}
               </div>
             ))}
           </form>
@@ -136,4 +121,6 @@ const SearchPanel = () => {
   );
 };
 
-export default SearchPanel;
+
+
+export default FilterPanel;

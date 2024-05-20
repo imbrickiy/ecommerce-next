@@ -1,5 +1,6 @@
-import { IFilters } from "@/app/types/interfaces";
-import Image from "next/image";
+"use client";
+import useFilterStore from "@/app/store/filter";
+import { Button } from "@/components/ui/button";
 
 const products = [
   {
@@ -66,9 +67,11 @@ const products = [
   // More products...
 ];
 
-const activeFilters = [{ value: "objects", label: "Objects" }]
-
 export const ProductList = () => {
+  const filtersList = useFilterStore();
+  const deleteList = useFilterStore((state) => state.deleteList);
+  const updateNode = useFilterStore((state) => state.updateNode);
+
   return (
     <div className="mx-auto max-w-2xl px-2 py-4 lg:max-w-7xl lg:px-8">
       <h2 className="font-[14px] text-[#0E1422]">Applied Filters:</h2>
@@ -83,19 +86,20 @@ export const ProductList = () => {
       <div className="mx-auto max-w-7xl px-2 py-3 sm:flex sm:items-center sm:px-4 lg:px-6">
         <div className="mt-2">
           <div className="-m-1 flex flex-wrap items-center">
-            {activeFilters?.map((activeFilter) => (
+            {filtersList?.filtersList.map((activeFilter) => (
               <span
                 key={activeFilter.value}
                 className="m-1 inline-flex items-center rounded-full border border-gray-200 bg-white py-1.5 pl-3 pr-2 text-sm font-medium text-gray-900"
               >
-                <span>{activeFilter.label}</span>
-                <button
+                <span>{activeFilter.value}</span>
+                <Button
+                  variant="ghost"
                   type="button"
                   className="ml-1 inline-flex h-4 w-4 flex-shrink-0 rounded-full p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-500"
+                  onClick={() => {
+                    deleteList(activeFilter);
+                  }}
                 >
-                  <span className="sr-only">
-                    Remove filter for {activeFilter.label}
-                  </span>
                   <svg
                     className="h-2 w-2"
                     stroke="currentColor"
@@ -108,7 +112,7 @@ export const ProductList = () => {
                       d="M1 1l6 6m0-6L1 7"
                     />
                   </svg>
-                </button>
+                </Button>
               </span>
             ))}
           </div>
